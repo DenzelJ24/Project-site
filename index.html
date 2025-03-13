@@ -9,6 +9,17 @@
       src="https://kit.fontawesome.com/a22e967a3a.js"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script src="index.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: ("LloBreoL9EHQZXW46")
+      });
+   })();
+</script>
   </head>
   <body>
     <section id="landing-page">
@@ -28,10 +39,9 @@
             <a
               href="#"
               class="nav__link--anchor link__hover-effect link__hover-effect--black"
-              >Projects</a
-            >
+              >Projects</a>
           </li>
-          <li class="nav__link">
+          <li class="nav__link" onclick="toggleModal()">
             <a
               href="#"
               class="nav__link--anchor link__hover-effect link__hover-effect--black"
@@ -55,7 +65,7 @@
             I'm a <b class="blue">Frontend Software Engineer</b> with a strong
             passion for building web applications with great user experiences.
             <br />
-            Here's a bit more <b class="blue">about me</b>.
+            Here's a bit more <b class="blue click" onclick="toggleModal()">about me</b>.
           </p>
           <div class="social__list">
             <a
@@ -74,7 +84,7 @@
           </div>
         </div>
       </header>
-      <button class="mail__btn click">
+      <button class="mail__btn click" onclick="toggleModal()">
         <i class="fa-solid fa-envelope"></i>
       </button>
       <a href="#projects" class="scroll">
@@ -110,28 +120,39 @@
             </div>
           </div>
           <div class="modal__half modal__contact">
+            <i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
+
             <h3 class="modal__title modal__title--contact">
                 Let's have a chat!
             </h3>
-          <div class="modal__half modal__contact">
+          
             <h3 class="modal__sub-title modal__sub-title--contact">
                 I'm currently open to new opportunities.
             </h3>
-            <form id="contact__form" action="">
+            <form id="contact__form" onsubmit="contact(event)">
                 <div class="form__item">
                     <label class="form__item--label">Name</label>
-                    <input class="input" name="user_name" type="text" required></input>
+                    <input class="input" name="user_name" type="text" ></input>
                 </div>
                 <div class="form__item">
                     <label class="form__item--label">Email</label>
-                    <input class="input" name="user_email" type="email" required></input>
+                    <input class="input" name="user_email" type="email" ></input>
                 </div>
                 <div class="form__item">
                     <label class="form__item--label">Message</label>
-                    <textarea class="input" name="message" type="text" required></textarea>
+                    <textarea class="input" name="message" type="text" ></textarea>
                 </div>
+                <button id="contact__submit" class="form__submit">
+                    Send it my way
+                </button>
             </form>
+          <div class="modal__overlay modal__overlay--loading">
+            <i class="fas fa-spinner"></i>
           </div>
+          <div class="modal__overlay modal__overlay--success">
+            Thanks for the message! Looking forward to speaking to you soon.
+          </div>
+          <i class="fas fa-times modal__exit click"></i>
     </div>
     </section>
     <section id="projects">
